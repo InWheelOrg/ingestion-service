@@ -14,21 +14,21 @@ import kotlin.test.assertEquals
 class PoiFilterTest {
 
     @Test
-    fun `restaurant is included as amenity`() {
+    fun `restaurant is included as restaurant`() {
         val result = PoiFilter.evaluate(mapOf("amenity" to "restaurant"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.RESTAURANT), result)
     }
 
     @Test
-    fun `hospital is included as amenity`() {
+    fun `hospital is included as healthcare`() {
         val result = PoiFilter.evaluate(mapOf("amenity" to "hospital"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.HEALTHCARE), result)
     }
 
     @Test
-    fun `atm is included as amenity`() {
+    fun `atm is included as finance`() {
         val result = PoiFilter.evaluate(mapOf("amenity" to "atm"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.FINANCE), result)
     }
 
     @Test
@@ -38,15 +38,15 @@ class PoiFilterTest {
     }
 
     @Test
-    fun `toilets is included as amenity`() {
+    fun `toilets is included as other`() {
         val result = PoiFilter.evaluate(mapOf("amenity" to "toilets"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.OTHER), result)
     }
 
     @Test
-    fun `childcare is included as amenity`() {
+    fun `childcare is included as education`() {
         val result = PoiFilter.evaluate(mapOf("amenity" to "childcare"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.EDUCATION), result)
     }
 
     @Test
@@ -110,15 +110,15 @@ class PoiFilterTest {
     }
 
     @Test
-    fun `public_transport station is included`() {
+    fun `public_transport station is included as transport`() {
         val result = PoiFilter.evaluate(mapOf("public_transport" to "station"))
-        assertEquals(Included(PlaceCategory.PUBLIC_TRANSPORT), result)
+        assertEquals(Included(PlaceCategory.TRANSPORT), result)
     }
 
     @Test
-    fun `public_transport stop_area is included`() {
+    fun `public_transport stop_area is included as transport`() {
         val result = PoiFilter.evaluate(mapOf("public_transport" to "stop_area"))
-        assertEquals(Included(PlaceCategory.PUBLIC_TRANSPORT), result)
+        assertEquals(Included(PlaceCategory.TRANSPORT), result)
     }
 
     @Test
@@ -142,7 +142,7 @@ class PoiFilterTest {
     @Test
     fun `building with amenity is included via amenity rule`() {
         val result = PoiFilter.evaluate(mapOf("building" to "yes", "amenity" to "hospital"))
-        assertEquals(Included(PlaceCategory.AMENITY), result)
+        assertEquals(Included(PlaceCategory.HEALTHCARE), result)
     }
 
     @Test
