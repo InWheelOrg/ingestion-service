@@ -11,6 +11,7 @@ permissions:
 jobs:
   assign:
     name: Assign PR author to PR and linked issues
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Assign author to the PR
